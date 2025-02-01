@@ -1,0 +1,6 @@
+Este archivo .RData puede ser leído por el software R. Ha sido obtenido a partir de las reviews (opiniones) que hicieron los usuarios de Amazon de distintos productos que se encuentran en la categoría software. En esta base de datos (software_amazon) encontraréis un data frame que contiene 4 variables:
+-id: identificador que utiliza Amazon para catalogar el producto.
+-nombre: nombre del software.
+-Estrellas: valoración que le han dado al producto (de 1 a 5 estrellas).
+-Precio: precio (en dólares) del producto.
+Obtenido de http://snap.stanford.edu/data/amazon/Software.txt.gz

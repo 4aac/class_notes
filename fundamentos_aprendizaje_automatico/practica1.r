@@ -152,4 +152,169 @@ head(datos, 5)
 
 
 # a) Este conjunto contiene la medida en cm. de las variables longitud y anchura de sépalo y del pétalo para un total de 150 flores de tres especies diferentes de iris (iris setosa, versicolor y virginica). Utiliza las funciones de ayuda de R para obtener la información anterior (en inglés) y el nombre de las variables.
+help(data(iris))
 
+
+# b) ¿Cuáles son los posibles valores de Species?
+names(datos)
+unique(datos$Species)  # unique nos devuelve los valores de la variable
+# Los posibles valores son setosa, versicolor y virginica 
+
+
+# c) Representa gráficamente las longitudes y anchuras de pétalo. Repetir el gráfico anterior diferenciando por el tipo de especie. Los gráficos obtenidos serán similares a los que siguen.
+plot(datos$Petal.Length, datos$Petal.Width, 
+     main="Gráfico de longitud y anchura del pétalo", 
+     xlab="Longitud del pétalo (cm)", 
+     ylab="Anchura del pétalo (cm)", 
+     col="red", 
+     pch=19)
+
+plot(datos$Petal.Length, datos$Petal.Width, 
+     main="Gráfico de longitud y anchura del pétalo por especie", 
+     xlab="Longitud del pétalo (cm)", 
+     ylab="Anchura del pétalo (cm)", 
+     col=as.factor(datos$Species), 
+     pch=19)
+legend("topleft", legend=levels(datos$Species), col=1:3, pch=19)
+
+
+# 8. Leer el fichero llamado titanic.txt utilizando datos<-read.table(file="titanic.txt", header=T)
+file.exists("fundamentos_aprendizaje_automatico/ConxuntosDatos_practica1/titanic.txt")  # Comprobar si el archivo existe en la ruta especificada
+datos <- read.table(file="fundamentos_aprendizaje_automatico/ConxuntosDatos_practica1/titanic.txt", header=T)
+
+
+# a) ¿Qué tipo de estructura es datos?
+str(datos)
+# Es un dataframe con 4 variables de tipo character
+
+
+# b) Obtener el nombre las variables y el tipo de cada una de ellas.
+# clase, sexo, edad, supervivientes y son characters
+
+
+# c) ¿Qué se obtiene al utilizar la función summary(datos)?
+summary(datos)
+# Nos da un resumen estadístico de los datos contenidos en el data.frame, por ejemplo el número de niveles (categorías) y la frecuencia de cada nivel.
+
+
+# d) ¿Cuántos adultos iban en el barco? ¿y cuántos niños?
+niños <- sum(datos$edad == "niño", na.rm = TRUE)
+niños
+adultos <- sum(datos$edad == "adulto", na.rm = TRUE)
+adultos
+# na.rm elimina los valores NA (desconocidos)
+
+
+# e) ¿Cuántos niños iban en primera? ¿cuántos niños formaban parte de la tripulación del barco?
+niños_primera <- sum(datos$clase == "primera" & datos$edad == "niño", na.rm=TRUE)
+niños_primera
+niños_tripulacion <- sum(datos$clase == "tripulación" & datos$edad == "niño", na.rm=TRUE)
+niños_tripulacion
+
+
+# f) ¿Cuántas personas han sobrevivido? ¿qué porcentaje representan respecto al total?
+supervivientes = sum(datos$superviviente == "si")
+supervivientes
+
+total = nrow(datos)
+porcentaje = supervivientes / total * 100
+porcentaje
+
+
+# g) Obténgase la siguiente tabla y gráficos para la variable clase utilizando las funciones table, barplot y pie.
+tabla_clase <- table(datos$clase)  # Obtener la tabla de frecuencias para la variable clase
+tabla_clase
+
+barplot(tabla_clase, 
+        main="Distribución de la clase", 
+        xlab="Clase", 
+        ylab="Frecuencia", 
+        col="lightblue", 
+        border="black")
+
+pie(tabla_clase, 
+    main="Distribución de la clase", 
+    col=rainbow(length(tabla_clase)), 
+    labels=names(tabla_clase))
+
+
+# h) Repítase el punto anterior para el resto de las variables en datos.
+
+
+
+# i) Obténgase la siguiente tabla con el número de supervivientes en función de la clase
+tabla_clase_supervivencia <- table(datos$superviviente, datos$clase)
+tabla_clase_supervivencia
+
+
+# j) Determinar y representar gráficamente el porcentaje de supervivientes para cada una de las clases. ¿Se aprecian difencias por clases?
+tabla_clase_supervivencia <- table(datos$clase, datos$superviviente)
+unique(datos$superviviente)
+total_por_clase <- rowSums(tabla_clase_supervivencia)
+supervivientes_por_clase <- tabla_clase_supervivencia[, "yes"]
+porcentaje_supervivientes <- (supervivientes_por_clase / total_por_clase) * 100
+
+barplot(porcentaje_supervivientes, 
+        main = "Porcentaje de Supervivientes por Clase", 
+        xlab = "Clase", 
+        ylab = "Porcentaje de Supervivientes (%)", 
+        col = "lightblue", 
+        border = "black")
+# Sí que se aprecian, cuanta mayor clases más supervivientes
+
+
+# 9. En el fichero mcycle de la librería MASS están los datos obtenidos de la simulación de un accidente de motocicleta. En este data frame se han registrado las aceleración de la cabeza del motorista en accidentes simulados con el objetivo de probar cascos de motos.
+# a) Carga los datos y obtén información sobre las variables del mismo.
+install.packages("MASS") 
+library(MASS)
+data("mcycle") 
+
+summary(mcycle)  # Resumen estadístico de los datos
+str(mcycle)  # Estructura del dataset
+head(mcycle)
+
+
+# b) Realiza un gráfio similar al siguiente ¿qué tipo de relación existe entre las variables representadas?
+datos = mcycle
+plot(datos$times, datos$accel, 
+     main="Simulación de accidente en moto", 
+     xlab="Tiempo (ms) después del impacto", 
+     ylab="aceleración (g)", 
+     pch=19)
+
+
+# 10. Utiliza data(pressure) para obtener datos de presión de vapor de mercurio en función de la temperatura
+data(pressure)
+head(pressure)
+
+
+# a) Obtén información sobre este conjunto de datos y sobre sus variables
+summary(pressure)
+str(pressure)
+
+
+# b) Obtén un gráfico como el que sigue £existe relación entre la temperatura y la presión?¿Esta relación es lineal? 
+plot(pressure$temperature, pressure$pressure, 
+     type = "o", 
+     col = "blue",
+     xlab = "Temperatura (°C)", 
+     ylab = "Presión (mm Hg)",
+     main = "Presión de vapor de mercurio vs. temperatura")
+
+
+# c) Repite el gráfico anterior considerando escalas logarítmicas en ambos ejes. Comenta los resultados obtenidos. ¿Es ahora la relación lineal?
+plot(log(pressure$temperature), log(pressure$pressure), 
+     type = "o", 
+     col = "red",
+     xlab = "Log(Temperatura)", ylab = "Log(Presión)",
+     main = "Relación Logarítmica entre Temperatura y Presión")
+
+
+# 11. En el fichero etanol.txt están los datos correspondientes a la concentración de óxido nítrico (nox) y etanol (etanol) en un expermiento de gases del motor de un automóvil. Carga Los datos pueden ser cargados y represéntalos gráficamente de forma que sea posible ver la relación entre las dos variables.
+datos <- read.table(file="fundamentos_aprendizaje_automatico/ConxuntosDatos_practica1/etanol.txt", header=T)
+head(datos)
+plot(datos$etanol, datos$nox,
+type="h", 
+xlab="etanol", 
+ylab="óxido nítrico (nox)", 
+main="Concentración de óxido nítrico y etanol")
