@@ -1,23 +1,23 @@
-# class_notes
-class notes from my ai bachelor degree
+# Class Notes  
+This repository contains my class notes from my AI Bachelor's degree program.  
 
-## Contenido del Repositorio
+## Contents  
 
-En este repositorio encontrarás:
+In this repository, you'll find the following:  
 
-- **PDFs renderizados en LaTeX**: documentos en formato PDF que contienen los apuntes.
-- **Archivos .tex**: los archivos fuente en LaTeX utilizados para generar los PDFs.
-- **Imágenes**: recursos gráficos utilizados en los documentos .tex.
+- **PDFs**: Documents in PDF format, including lecture slides, practice materials, or rendered LaTeX files.  
+- **.tex files**: LaTeX source files used for coursework or personal notes.  
+- **Pictures**: Visual resources and graphics incorporated into the .tex files.  
 
-## Notas Importantes
+## Important Notes  
 
-- Los apuntes pueden contener errores o inexactitudes. Se recomienda utilizarlos como complemento a las clases y materiales oficiales.
-- No me hago responsable de cualquier inconveniente que pueda surgir del uso de estos apuntes.
+- My notes may contain errors or inaccuracies. Please use them as a supplementary resource alongside official course materials and verified sources.  
+- I am not responsible for any issues or inconveniences arising from the use of these notes.  
 
-## Contribuciones
+## Contributions  
 
-Si deseas contribuir a este repositorio, siéntete libre de hacer un fork y enviar un pull request. Agradezco cualquier corrección o mejora que puedas aportar.
+If you spot any errors or have suggestions for improvement, feel free to fork the repository and submit a pull request. Your contributions to correcting or enhancing the content are greatly appreciated!  
 
 ---
 
-¡Espero que estos apuntes te sean útiles!
+**Disclaimer**: These notes are intended for personal use and as a study aid. Always cross-reference with official course materials and consult instructors for clarification when needed.
