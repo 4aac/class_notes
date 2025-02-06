@@ -107,3 +107,27 @@ litros(litros, jarras) :- jarras * capacidad_jarras(
 % d- Sen tele e sen cervexa, Homer perde a cabeza.
 pierde_cabeza(Homer) :- not(tiene(Homer, cerveza)), not(tiene(Homer, television)).
 
+
+/* CONSULTAS
+
+% EJERCICIO 5
+
+a- Quen estuda no colexio de primaria de Springfield?
+estudia(X, Springfield)
+
+b- Hai algún menor ao que lle guste o jazz?
+menor(X), gusta(X, jazz)
+
+c- Cantos menores hai aos que lles guste facer pintadas? E cantos adultos co mesmo gusto?
+menor(X), gusta(X, pintadas)
+adulto(Y), gusta(Y, pintadas)
+
+d- Cantas parellas de amigos son recíprocas?
+amigo(X, Y), amigo(Y, x), X\=Y
+
+e- Quen son as nais dos personaxes que teñen relación de medio irmán con
+algún outro personaxe?
+madre(X, B1), madre(X, B2), B1\=B2.
+
+*/
+

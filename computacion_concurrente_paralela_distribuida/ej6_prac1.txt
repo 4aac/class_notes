@@ -1,0 +1,12 @@
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    13  63.347656 MiB  63.347656 MiB           1   @profile(precision=6)  # Se declara la función, consumiendo memoria
+    def listas():
+    15 139.644531 MiB  76.296875 MiB           1       a = [1] * (10 ** 7)  # Se declcara la variable a y se incrementa la memoria debido al almacenamiento del vector
+    16 292.234375 MiB 152.589844 MiB           1       b = [2] * (2 * 10 ** 7)  # Se declara la variable b, que consume el doble que a, al tener el doble de elementos que a
+    17 521.117188 MiB 228.882812 MiB           1       c = a + b  # En c realizamos la suma de a+b, lo que almacena la suma de ambos (76+152=228)
+    18 521.117188 MiB   0.000000 MiB           1       d = c  # Como en python las variables usan punteros, no hace falta volver a crear el valor de c, d apunta hacia c
+    19 368.527344 MiB -152.589844 MiB           1       del b  # Se reduce el uso de memoria en 152MB al eliminar b
+    20 292.230469 MiB -76.296875 MiB           1       a = None  # Se eliminan los valores anteriores de a y se sustituyen por un None
+    21 292.230469 MiB   0.000000 MiB           1       del c  # Como a no almacena nada y se ha eliminado b, al eliminar c no se libera nada de memoria
+    22  63.347656 MiB -228.882812 MiB           1       del d  # Se vuelve a reducir la memoria usada al eliminar los valores de d
