@@ -65,7 +65,7 @@ y <- matrix(rpois(6, 20), nrow=2, ncol=3)
 
 
 # a) ¿Qué tipo de ordenación se consigue con los tres comandos siguientes?
-sort(y) # Ordena todos los elementos de la matriz
+sort(y) # Ordena todos los elementos de la matriz (pasa de matriz a vector)
 apply(y, 2, sort) # Ordena por columnas
 apply(y, 1, sort) # Ordena por filas
 
@@ -239,8 +239,17 @@ pie(tabla_clase,
 
 
 # h) Repítase el punto anterior para el resto de las variables en datos.
+table(datos$sexo)
+barplot(table(datos$sexo))
+pie(table(datos$sexo))
 
+table(datos$edad)
+barplot(table(datos$edad))
+pie(table(datos$edad))
 
+table(datos$superviviente)
+barplot(table(datos$superviviente))
+pie(table(datos$superviviente))
 
 # i) Obténgase la siguiente tabla con el número de supervivientes en función de la clase
 tabla_clase_supervivencia <- table(datos$superviviente, datos$clase)
@@ -251,7 +260,7 @@ tabla_clase_supervivencia
 tabla_clase_supervivencia <- table(datos$clase, datos$superviviente)
 unique(datos$superviviente)
 total_por_clase <- rowSums(tabla_clase_supervivencia)
-supervivientes_por_clase <- tabla_clase_supervivencia[, "yes"]
+supervivientes_por_clase <- tabla_clase_supervivencia[, "si"]
 porcentaje_supervivientes <- (supervivientes_por_clase / total_por_clase) * 100
 
 barplot(porcentaje_supervivientes, 

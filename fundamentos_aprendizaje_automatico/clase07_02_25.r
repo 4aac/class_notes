@@ -110,4 +110,110 @@ L1 = list(x,y,z)
 
 L1[2]
 L1[[2]][2]
-# [[X]] accede al vecto X y contecatenado con [Y] accedemos al elemento Y del vector
+# [[X]] accede al vector X y concatenado con [Y] accedemos al elemento Y del vector
+
+L2 = list(Numeros=x, Generos=y, Matriz=z)
+L2
+
+data(iris)
+names(iris)
+iris$Sepal.Length
+
+# Con attach podemos llamar a las variables sin usar $. No es un método muy recomendado
+attach(iris)
+Sepal.Length
+# Con detach deja de funcionar
+detach(iris)
+Sepal.Length
+
+# Diferencias entre matrices y data frames: en las matrices solo puede haber números, mientras que en los df puede haber varios tipos de datos
+lista.compra = data.frame(
+    Producto = c("Zumo", "Queso", "Yogurt"),
+    Seccion = c("Bebidas", "Lacteos", "Lácteos"),
+    Unidades = c(2, 1, 10)
+)
+lista.compra
+lista.compra$Producto
+lista.compra[["Producto"]]
+lista.compra[lista.compra$Unidades %in% c(1,2), ]  # Esto nos indica  que devuelva las unidades con los valores 1 y 2
+lista.compra[ lista.compra$Unidades %in% c(1,2 & lista.compra$Producto == "Zumo") ]
+
+subset(lista.compra, Unidades==1)
+subset(lista.compra,Unidades %in% c(1,2 & lista.compra$Producto == "Zumo")
+
+# 3. Considera la matriz y creada con y <- matrix(rpois(6, 20), nrow=2, ncol=3) # Poisson parámetro 20
+y <- matrix(rpois(6, 20), nrow=2, ncol=3)
+
+
+y <- matrix(rpois(6, 20), nrow=2, ncol=3)
+# a) ¿Qué tipo de ordenación se consigue con los tres comandos siguientes?
+sort(y) # Ordena todos los elementos de la matriz
+apply(y, 2, sort) # Ordena por columnas
+apply(y, 1, sort) # Ordena por filas
+
+# Nº8
+datos <- read.table(file="fundamentos_aprendizaje_automatico/ConxuntosDatos_practica1/titanic.txt", header=T)
+
+# a) 
+class(datos)
+# Un dataframe
+
+# b)
+names(datos)
+class(names(datos))
+
+str(datos)
+# clase, sexo, edad, supervivientes
+
+# c)
+summary(datos)
+# Se obtiene las columnas, el número de filas y el tipo de datos
+
+# d)
+sum(datos$edad == "adulto")
+sum(datos$edad == "niño")
+
+# e)
+sum(datos$edad == "niño" & datos$clase == "primera")
+sum(datos$edad == "niño" & datos$clase == "tripulación")
+
+# f) 
+sum(datos$superviviente == "si")
+sum(datos$superviviente == "si") * length(datos) / 100
+
+# g)
+table(datos$clase)
+barplot(table(datos$clase))
+pie(table(datos$clase))
+
+# h)
+table(datos$sexo)
+barplot(table(datos$sexo))
+pie(table(datos$sexo))
+
+table(datos$edad)
+barplot(table(datos$edad))
+pie(table(datos$edad))
+
+table(datos$superviviente)
+barplot(table(datos$superviviente))
+pie(table(datos$superviviente))
+
+# i)
+table(datos$superviviente, datos$clase)
+table(datos$clase, datos$superviviente)
+
+# j)
+tabla_clase_supervivencia <- table(datos$clase, datos$superviviente)
+tabla_clase_supervivencia
+
+total_por_clase <- rowSums(tabla_clase_supervivencia)  # igual a apply(tabla_clase_supervivencia, 1, "sum")
+total_por_clase
+
+supervivientes_por_clase <- tabla_clase_supervivencia[, "si"]
+supervivientes_por_clase
+
+porcentaje_supervivientes <- (supervivientes_por_clase / total_por_clase) * 100
+porcentaje_supervivientes
+
+barplot(porcentaje_supervivientes, col = "gold", border = "black")
