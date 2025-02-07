@@ -161,13 +161,12 @@ class(datos)
 # b)
 names(datos)
 class(names(datos))
-
 str(datos)
 # clase, sexo, edad, supervivientes
 
 # c)
 summary(datos)
-# Se obtiene las columnas, el número de filas y el tipo de datos
+# Summary trata de darnos los estadísticos descriptivos. Si no puede intenta desribirnos los datos.
 
 # d)
 sum(datos$edad == "adulto")
@@ -179,11 +178,12 @@ sum(datos$edad == "niño" & datos$clase == "tripulación")
 
 # f) 
 sum(datos$superviviente == "si")
-sum(datos$superviviente == "si") * length(datos) / 100
+perc = sum(datos$superviviente == "si") / nrow(datos) * 100
+paste("El número de supervivientes es ", round(perc, 2), "% del total", sep="")
 
 # g)
-table(datos$clase)
-barplot(table(datos$clase))
+table(datos$clase)  # Frecuencias de los datos  
+barplot(table(datos$clase), las=1, col=rainbow(4))  # Con barplot pintamos las frecuencias
 pie(table(datos$clase))
 
 # h)
@@ -200,7 +200,7 @@ barplot(table(datos$superviviente))
 pie(table(datos$superviviente))
 
 # i)
-table(datos$superviviente, datos$clase)
+table(datos$superviviente, datos$clase)  # Tabla de frecuencias comparado entre dos variables
 table(datos$clase, datos$superviviente)
 
 # j)
