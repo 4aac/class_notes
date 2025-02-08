@@ -323,7 +323,7 @@ plot(log(pressure$temperature), log(pressure$pressure),
 datos <- read.table(file="fundamentos_aprendizaje_automatico/ConxuntosDatos_practica1/etanol.txt", header=T)
 head(datos)
 plot(datos$etanol, datos$nox,
-type="h", 
-xlab="etanol", 
-ylab="óxido nítrico (nox)", 
-main="Concentración de óxido nítrico y etanol")
+     type="h", 
+     xlab="etanol", 
+     ylab="óxido nítrico (nox)", 
+     main="Concentración de óxido nítrico y etanol")
