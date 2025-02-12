@@ -1,0 +1,44 @@
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+     6  61.132812 MiB  61.132812 MiB           1   @profile(precision=6)  # Incrementa los MiB por la definición de la variable
+     7                                         def types():
+     8  82.378906 MiB  21.246094 MiB           1       a = np.random.rand(10**7).astype(np.float16) # Creación de a
+     9  63.304688 MiB -19.074219 MiB           1       del a  # Eliminación de a
+    10 101.453125 MiB  38.148438 MiB           1       a = np.random.rand(10**7).astype(np.float32)  # Creación de a (doble de la a anterior)
+    11  63.304688 MiB -38.148438 MiB           1       del a  # Eliminación de a
+    12 139.601562 MiB  76.296875 MiB           1       a = np.random.rand(10**7).astype(np.float64)  # Creación de a (doble de la a anterior)
+    13  63.304688 MiB -76.296875 MiB           1       del a
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    15  63.351562 MiB  63.351562 MiB           1   @profile(precision=6)  # Definición de la variable precision
+    16                                         def listas():
+    17 139.648438 MiB  76.296875 MiB           1       a = [1] * (10 ** 7)  # Creacion de a
+    18 292.238281 MiB 152.589844 MiB           1       b = [2] * (2 * 10 ** 7)  # Creacion de b (doble de a)
+    19 521.121094 MiB 228.882812 MiB           1       c = a + b  # Creacion de c (suma de tamaño de a y b)
+    20 521.121094 MiB   0.000000 MiB           1       d = c  # Puntero apuntando a c
+    21 368.531250 MiB -152.589844 MiB           1       del b  # Eliminación de b
+    22 292.234375 MiB -76.296875 MiB           1       a = None  # Puntero de a al singletone None (no ocupa espacio)
+    23 292.234375 MiB   0.000000 MiB           1       del c  # Eliminación del puntero c
+    24  63.351562 MiB -228.882812 MiB           1       del d  # Como se ya ha eliminado un puntero de los dos que apuntaban y ahora se elimina el segundo, se vacia el valor de la posición de memoria
+
+Line #    Mem usage    Increment  Occurrences   Line Contents
+=============================================================
+    26  63.351562 MiB  63.351562 MiB           1   @profile(precision=6)  # Creacion de la variable precision
+    27                                         def numpy():
+    28  63.351562 MiB   0.000000 MiB           1       SIZE = int(1e4)  # Creacion de la variable SIZE (valor muy pequeño)
+    29 826.296875 MiB 762.945312 MiB           1       a = np.random.rand(SIZE, SIZE)  # Creacion de la variable a, que es una matriz de valores aletorios de dimension
+    30 1589.238281 MiB 762.941406 MiB           1       b = np.random.rand(SIZE, SIZE)  # Creación de la variable b, ocupa lo mismo que a al ser una matriz
+    31 2352.179688 MiB 762.941406 MiB           1       b2 = b.copy()  # Como crea una nueva variable con el mismo tamaño que b incrementa lo mismo
+    32 2352.179688 MiB   0.000000 MiB           1       b3 = b  # Es un puntero que referencia a b
+    33 3115.128906 MiB 762.949219 MiB           1       c = a + b  # Variable c que almacena que al ser suma de matrices es el mismo tamaño
+    34 2352.187500 MiB -762.941406 MiB           1       del b2  # Elimina la matriz b2
+    35 2352.187500 MiB   0.000000 MiB           1       del b3  # Se elimina el puntero a b, pero al no borrar b, se mantiene en memoria
+    36 1589.246094 MiB -762.941406 MiB           1       a = None  # Se hace referencia al singleton None, por lo que se vacía a
+    37 2352.187500 MiB 762.941406 MiB           1       d = np.random.rand(SIZE, SIZE)  # se crea otra matriz del mismo tamaño que antes
+    38 2352.246094 MiB   0.058594 MiB           1       sum = np.sum(d)  # se crea una variable d que suma todos los 1 de la matriz (al ser un entero ocupa poco) 
+    39 2352.246094 MiB   0.000000 MiB           1       tr = d.T  # Se crea la variable tr, que no incrementa el tamaño porque es un puntero que devuelve la matriz traspuesta
+    40 3115.191406 MiB 762.945312 MiB           1       trcopy = d.T.copy()  # Ahora hace un copy y crea una nueva variable con el mismo tamaño
+    41 4641.074219 MiB 1525.882812 MiB           1       concat = np.concatenate((c, d), axis=0)  # concatenate concatena las matrices c y d, que es la suma en memoria de ambas (al tener la misma dimensión)
+    42 4641.093750 MiB   0.019531 MiB           1       split = np.split(concat, 2, axis=0)  # solo devuelve una vista de los datos, por lo tanto solo es una referencia a ellos, no aumenta el valor de memoria, ya que split divide la matriz según indiques
+    43 826.386719 MiB -3814.707031 MiB           1       del c, d, tr, trcopy, concat, split  # Se elminan las siguientes variables
