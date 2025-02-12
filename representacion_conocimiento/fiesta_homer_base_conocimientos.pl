@@ -1,4 +1,7 @@
-% Hechos
+% Asier Acuña Casal
+
+% HECHOS
+
 hombre(homer)
 adulto(homer)
 vive(homer, casa_springfield)
@@ -30,7 +33,7 @@ vive(bart, casa_springfield)
 estudia(bart, colegio_primaria)
 come(bart, churrasco)
 come(bart, criollo)
-not(come(bart, chorizo))  % mirar si hacer hecho: not_come
+not(come(bart, chorizo))  
 gusta(bart, skate)
 
 niño(lisa)
@@ -224,12 +227,49 @@ hijo(ralph_wiggum, clancy_wiggum)
 hijo(ralph_wiggum, sarah_wiggum)
 vive(ralph_wiggum, springfield)
 estudia(ralph_wiggum, colegio_primaria)
-not(come(ralph_wiggum, churrasco)
+not(come(ralph_wiggum, churrasco))
 not(come(ralph_wiggum, criollo))
 not(come(ralph_wiggum, chorizo))
 es(ralph_wiggum, vegetariano)
 gusta(ralph_wiggum, quemar_cosas)
 
 
+% REGLAS
 
-% Reglas
+invitado(X) :- familia(X, simpson), vive(X, casa_springfield) 
+invitado(X) :- padre(X, Y), padre(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
+invitado(X) :- madre(X, Y), madre(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
+invitado(X) :- hermanos(X, Y), hermanos(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
+club_lectura(X) :- gusta(X, leer), mujer(X), adulto(X)
+amigo(homer, X) :- amigo(X, homer), trabaja_en(X, nuclear), count(aficcion(X, _) == aficcion(homer, _)) > 1
+amigo(marge, X) :- amigo(X, marge), club_lectura(X)
+amigo(marge, X) :- adulto(X), amigo(X, marge)
+invitado(X) :- amigo(X, homer), amigo(homer, X)
+invitado(X) :- amigo(X, marge), amigo(marge, X)
+invitado(Y) :- amigo(X, homer), amigo(homer, X), pareja(X, Y), pareja(Y, X)
+invitado(Y) :- amigo(X, marge), amigo(marge, X), pareja(X, Y), pareja(Y, X)
+invitado(Y) :- amigo(X, homer), amigo(homer, X), hijo(Y, X), amigo(lisa, Y), amigo(Y, lisa)
+invitado(Y) :- amigo(X, marge), amigo(marge, X), hijo(Y, X), amigo(lisa, Y), amigo(Y, lisa)
+invitado(Y) :- amigo(X, homer), amigo(homer, X), hijo(Y, X), amigo(bart, Y), amigo(Y, bart)
+invitado(Y) :- amigo(X, marge), amigo(marge, X), hijo(Y, X), amigo(bart, Y), amigo(Y, bart)
+amigo(lisa, X) :- amigo(X, lisa), estudia(X, springfield)
+amigo(bart, X) :- amigo(X, bart), estudia(X, springfield)
+
+not(invitado(X)) :- trabaja(X, profesor)
+not(invitado(X)) :- bebe(X)
+
+unidades(X, tofu, 2) :- vegetariano(X)
+unidades(X, criollo, 1) :- not(come(X, churrasco)), come(X, criollo), come(X, chourizo)
+unidades(X, chorizo, 1) :- not(come(X, churrasco)), come(X, criollo), come(X, chourizo)
+unidades(X, churrasco, 2) :- come(X, churrasco), not(come(X, criollo)), not(come(X, chourizo))
+unidades(X, churrasco, 1) :- come(X, churrasco), come(X, criollo), not(come(X, chourizo))
+unidades(X, criollo, 1) :-  come(X, churrasco), come(X, criollo), not(come(X, chourizo))
+unidades(X, churrasco, 1) :- come(X, churrasco), not(come(X, criollo)), come(X, chourizo)
+unidades(X, chorizo, 1) :-  come(X, churrasco), not(come(X, criollo)), come(X, chourizo)
+unidades(X, churrasco, 1) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
+unidades(X, criollo, 0.5) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
+unidades(X, chourizo, 0.5) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
+
+bebe(X, cerveza) :- gusta(X, bar_moe), adulto(X)
+bebe(X, vino) :- not(gusta(X, bar_moe)), adulto(X)
+bebe(X, limonada) :- niño(X)
