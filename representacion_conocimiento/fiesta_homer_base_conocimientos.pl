@@ -1,275 +1,212 @@
-% Asier Acuña Casal
+%HECHOS 
 
-% HECHOS
+hombre(homer). 
+hombre(bart). 
+hombre(abe). 
+hombre(lenny_leonard). 
+hombre(carl_carlson). 
+hombre(barney_gumble). 
+hombre(moe_szyslak). 
+hombre(ned_flanders). 
+hombre(rod_flanders). 
+hombre(todd_flanders). 
+hombre(kirk_van_houten). 
+hombre(milhouse_van_houten). 
+hombre(clancy_wiggum). 
+hombre(ralph_wiggum).
+mujer(marge). 
+mujer(lisa).
+mujer(maggie). 
+mujer(jackie_bouvier). 
+mujer(patty_bouvier). 
+mujer(selma_bouvier). 
+mujer(edna_krabappel). 
+mujer(luann_van_houten). 
+mujer(sarah_wiggum).
 
-hombre(homer)
-adulto(homer)
-vive(homer, casa_springfield)
-trabaja(homer, responsable_central)
-gusta(homer, carne)
-come(homer, churrasco)
-come(homer, criollo)
-come(homer, chorizo)
-gusta(homer, beber_bar_moe)
+adulto(homer). 
+adulto(marge). 
+adulto(abe). 
+adulto(jackie_bouvier). 
+adulto(patty_bouvier). 
+adulto(selma_bouvier). 
+adulto(lenny_leonard). 
+adulto(carl_carlson). 
+adulto(barney_gumble). 
+adulto(moe_szyslak). 
+adulto(ned_flanders). 
+adulto(edna_krabappel). 
+adulto(luann_van_houten). 
+adulto(kirk_van_houten). 
+adulto(clancy_wiggum). 
+adulto(sarah_wiggum).
+niño(bart). 
+niño(lisa). 
+niño(rod_flanders). 
+niño(todd_flanders). 
+niño(milhouse_van_houten). 
+niño(ralph_wiggum).
+bebé(maggie).
 
-mujer(marge)
-adulto(marge)
-pareja(homer, marge)
-pareja(marge, homer)
-vive(marge, casa_springfield)
-trabaja(marge, ama_casa)
-gusta(marge, carne)
-come(marge, churrasco)
-come(marge, criollo)
-come(marge, chorizo)
-aficcion(marge, leer)
+vive(homer, casa_springfield). 
+vive(marge, casa_springfield). 
+vive(bart, casa_springfield). 
+vive(lisa, casa_springfield). 
+vive(maggie, casa_springfield). 
+vive(abe, residencia_ancianos). 
+vive(jackie_bouvier, fuera_springfield). 
+vive(patty_bouvier, piso_springfield). 
+vive(selma_bouvier, piso_springfield). 
+vive(lenny_leonard, springfield). 
+vive(carl_carlson, springfield). 
+vive(barney_gumble, springfield). 
+vive(moe_szyslak, springfield). 
+vive(ned_flanders, casa_lado_simpson). 
+vive(rod_flanders, casa_lado_simpson). 
+vive(todd_flanders, casa_lado_simpson). 
+vive(edna_krabappel, springfield). 
+vive(luann_van_houten, springfield). 
+vive(kirk_van_houten, springfield). 
+vive(milhouse_van_houten, springfield). 
+vive(clancy_wiggum, springfield). 
+vive(sarah_wiggum, springfield). 
+vive(ralph_wiggum, springfield).
 
-niño(bart)
-hijo(bart, homer)
-hijo(bart, marge)
-padre(homer, bart)
-madre(marge, bart)
-vive(bart, casa_springfield)
-estudia(bart, colegio_primaria)
-come(bart, churrasco)
-come(bart, criollo)
-not(come(bart, chorizo))  
-gusta(bart, skate)
+trabaja(homer, central_nuclear). 
+trabaja(marge, ama_casa). 
+trabaja(barney_gumble, piloto_helicopteros). 
+trabaja(moe_szyslak, bar_moe). 
+trabaja(ned_flanders, zurdorium). 
+trabaja(edna_krabappel, colegio_primaria). 
+trabaja(patty_bouvier, oficina_trafico). 
+trabaja(selma_bouvier, oficina_trafico). 
+trabaja(lenny_leonard, central_nuclear). 
+trabaja(carl_carlson, central_nuclear). 
+trabaja(kirk_van_houten, espantapajaros). 
+trabaja(clancy_wiggum, jefe_policia). 
+trabaja(luann_van_houten, oficina_desconocida).
 
-niño(lisa)
-mujer(lisa)
-hijo(lisa, homer)
-hijo(lisa, marge)
-padre(homer, lisa)
-madre(marge, lisa)
-vive(lisa, casa_springfield)
-estudia(lisa, colegio_primaria)
-not(gusta(lisa, carne))
-es(lisa, vegetariana)
-gusta(lisa, jugar_muñecas_stacymalibu)
+come(homer, churrasco). 
+come(homer, criollo). 
+come(homer, chorizo). 
+come(marge, churrasco). 
+come(marge, criollo). 
+come(marge, chorizo). 
+come(bart, churrasco). 
+come(bart, criollo). 
+come(lisa, salchichas_tofu). 
+come(abe, churrasco). 
+come(abe, criollo). 
+come(abe, chorizo). 
+come(jackie_bouvier, churrasco). 
+come(jackie_bouvier, chorizo). 
+come(patty_bouvier, churrasco). 
+come(patty_bouvier, criollo). 
+come(patty_bouvier, chorizo). 
+come(selma_bouvier, churrasco). 
+come(selma_bouvier, criollo). 
+come(selma_bouvier, chorizo). 
+come(lenny_leonard, churrasco). 
+come(lenny_leonard, chorizo). 
+come(barney_gumble, churrasco). 
+come(barney_gumble, criollo). 
+come(barney_gumble, chorizo). 
+come(moe_szyslak, criollo). 
+come(moe_szyslak, chorizo). 
+come(ned_flanders, churrasco). 
+come(rod_flanders, churrasco). 
+come(todd_flanders, churrasco). 
+come(todd_flanders, chorizo). 
+come(edna_krabappel, churrasco). 
+come(edna_krabappel, criollo). 
+come(edna_krabappel, chorizo). 
+come(luann_van_houten, churrasco). 
+come(kirk_van_houten, churrasco). 
+come(kirk_van_houten, criollo). 
+come(kirk_van_houten, chorizo). 
+come(milhouse_van_houten, churrasco). 
+come(milhouse_van_houten, criollo). 
+come(clancy_wiggum, churrasco). 
+come(clancy_wiggum, criollo). 
+come(clancy_wiggum, chorizo). 
+come(sarah_wiggum, churrasco). 
+come(sarah_wiggum, criollo). 
+come(sarah_wiggum, chorizo). 
+come(ralph_wiggum, salchichas_tofu).
 
-hijo(maggie, homer)
-hijo(maggie, marge)
-padre(homer, maggie)
-madre(marge, maggie)
-vive(maggie, casa_springfield)
-not(estudia(maggie, _))
-not(gusta(maggie, carne))
-not(gusta(maggie, vegetales))
-gusta(maggie, chupete)
+aficion(homer, beber_bar_moe). 
+aficion(marge, leer).
+aficion(bart, skate). 
+aficion(lisa, jugar_muñecas).
+aficion(abe, contar_historias). 
+aficion(lenny_leonard, beber_bar_moe). 
+aficion(carl_carlson, beber_bar_moe). 
+aficion(barney_gumble, beber_bar_moe). 
+aficion(moe_szyslak, pescar). 
+aficion(ned_flanders, rezar).
+aficion(rod_flanders, rezar). 
+aficion(todd_flanders, rezar). 
+aficion(edna_krabappel, niños). aficion(luann_van_houten, leer). 
+aficion(kirk_van_houten, comer_palomitas). aficion(milhouse_van_houten, lisa). 
+aficion(clancy_wiggum, rosquillas). 
+aficion(sarah_wiggum, leer). 
+aficion(ralph_wiggum, quemar_cosas).
 
-adulto(abbe).
-padre(abbe, homer).
-vive(abbe, residencia_ancianos)
-not(trabaja(abbe, _)) 
-gusta(abbe, carne)
-come(abbe, churrasco)
-come(abbe, criollo)
-come(abbe, chorizo)
-not(aficcion(abbe, _))
-es(abbe, jubilado)
-gusta(abbe, contar_historias)
+padre(homer, bart). 
+padre(homer, lisa). 
+padre(homer, maggie).  
+padre(abe, homer). 
+madre(marge, bart). 
+madre(marge, lisa). 
+madre(marge, maggie).
+madre(jackie_bouvier, marge).
 
-mujer(jackie_bouvier)
-madre(jackie_bouvier, marge)
-hijo(marge, jackie_bouvier)
-adunto(jackie_bouvier)
-not(vive(jackie_bouvier, ciudad))
-es(jackie_bouvier, jubilada)
-come(jackie_bouvier, churrasco)
-not(come(jackie_bouvier, criollo))
-aficcion(jackie_bouvier, _)
+hermanos(patty_bouvier, marge). 
+hermanos(marge, patty_bouvier). 
+hermanos(selma_bouvier, marge). 
+hermanos(marge, selma_bouvier). 
+hermanos(patty_bouvier, selma_bouvier). 
+hermanos(selma_bouvier, patty_bouvier).
 
-mujer(patty_bouvier)
-hermanos(patty_bouvier, marge)
-hermanos(marge, patty_bouvier)
-adulto(patty_bouvier)   
-vive(patty_bouvier, piso_springfield)
-hermanos(selma, patty_bouvier)
-hermanos(patty_bouvier, selma)
-hermanos(selma, marge)
-hermanos(marge, selma)
-comparte_piso(patty_bouvier, selma) 
-trabaja(patty_bouvier, oficina_trafico)
-come(patty_bouvier, churrasco)
-come(patty_bouvier, criollo)
-come(patty_bouvier, chorizo)
-aficcion(patty_bouvier, fumar)
-
-adulto(selma)
-comparte_piso(selma, patty_bouvier)
-trabaja(selma, oficina_trafico) 
-come(selma, churrasco)
-come(selma, criollo)
-come(selma, chorizo)
-aficcion(selma, fumar)
-
-adulto(lenny_leonard)
-trabaja(lenny_leonard, central_nuclear)
-hombre(lenny_leonard)
-come(lenny_leonard, churrasco)
-come(lenny_leonard, chorizo)
-not(come(lenny_leonard, criollo))
-gusta(lenny_leonard, beber_bar_moe)
-
-adulto(carl_carlson)
-trabaja(carl_carlson, central_nuclear)
-hombre(carl_carlson)
-not(gusta(carl_carlson, carne))
-es(carl_carlson, vegetariano)
-gusta(carl_carlson, beber_bar_moe)
-
-adulto(barney_gumble)   
-hombre(barney_gumble)
-vive(barney_gumble, springfield)
-trabaja(barney_gumble, piloto_helicoptero)
-come(barney_gumble, churrasco)
-come(barney_gumble, criollo)
-come(barney_gumble, chorizo)
-es(barney_gumble, borracho_ciudad)
-gusta(barney_gumble, beber_bar_moe)
-
-hombre(moe)
-adulto(moe)
-vive(moe, springfield)
-trabaja(moe, bar_moe)
-not(come(moe, churrasco))
-come(moe, criollo)  
-come(moe, chorizo)
-gusta(moe, trabajar_bar_moe)
-gusta(moe, pescar)
-
-hombre(ned_flanders)
-adulto(ned_flanders)
-vive(ned_flanders, casa_lado_simpson)
-vecino(ned_flanders, simpson)
-vecino(simpson, ned_flanders)
-trabaja(ned_flanders, zurdorium)
-come(ned_flanders, churrasco)
-not(come(ned_flanders, criollo))
-not(come(ned_flanders, chorizo))   
-es(ned_flanders, religioso)
-gusta(ned_flanders, rezar)
-
-niño(rod_flanders)
-hijo(rod_flanders, ned_flanders)   
-vive(rod_flanders, casa_lado_simpson)   
-not(estudia(rod_flanders, colegio_primaria))
-estudia(rod_flanders, colegio_religioso)
-come(rod_flanders, churrasco)
-not(come(rod_flanders, criollo))
-not(come(rod_flanders, chorizo))
-gusta(rod_flanders, rezar)
-
-niño(todd_flanders)
-hijo(todd_flanders, ned_flanders)  
-vive(todd_flanders, casa_lado_simpson)
-not(estudia(todd_flanders, colegio_primaria))
-estudia(todd_flanders, colegio_religioso)
-come(todd_flanders, churrasco)
-not(come(todd_flanders, chorizo)
-not(come(todd_flanders, criollo))
-gusta(todd_flanders, rezar)
-hermanos(rod_flanders, todd_flanders)
-hermanos(todd_flanders, rod_flanders)
-
-mujer(edna_krabappel)
-adulto(edna_krabappel)
-trabaja(edna_krabappel, colegio_primaria)   
-come(edna_krabappel, churrasco)
-come(edna_krabappel, criollo)
-come(edna_krabappel, chorizo)
-gusta(edna_krabappel, niños)
-vive(edna_krabappel, springfield)
-
-mujer(luann_van_houten)
-adulto(luann_van_houten)
-expareja(luann_van_houten, kirk_van_houten)
-expareja(kirk_van_houten, luann_van_houten)
-vive(luann_van_houten, springfield)
-trabaja(luann_van_houten, oficina)
-not(come(luann_van_houten, chorizo))
-not(come(luann_van_houten, criollo))
-gusta(luann_van_houten, lectura)
-
-hombre(kirk_van_houten)
-adulto(kirk_van_houten)
-trabaja(kirk_van_houten, espanta_pajaros)
-come(kirk_van_houten, churrasco)
-come(kirk_van_houten, criollo)
-come(kirk_van_houten, chorizo)
-aficcion(kirk_van_houten, comer_palomitas_de_maiz)
-
-hombre(clancy_wiggum)
-adulto(clancy_wiggum)
-vive(clancy_wiggum, springfield)
-trabaja(clancy_wiggum, jefe_policia)
-gusta(clancy_wiggum, comer)
-come(clancy_wiggum, churrasco)
-come(clancy_wiggum, criollo)
-come(clancy_wiggum, chorizo)
-gusta(clancy_wiggum, rosquillas)
-aficcion(clancy_wiggum, comer_rosquillas)
-
-mujer(sarah_wiggum)
-adulto(sarah_wiggum)
-vive(sarah_wiggum, springfield)
-pareja(sarah_wiggum, clancy_wiggum)
-pareja(clancy_wiggum, sarah_wiggum)
-trabaja(sarah_wiggum, ama_casa)
-come(sarah_wiggum, churrasco)
-come(sarah_wiggum, criollo)
-come(sarah_wiggum, chorizo)
-aficcion(sarah_wiggum, leer)
-
-niño(ralph_wiggum)  
-hijo(ralph_wiggum, clancy_wiggum)
-hijo(ralph_wiggum, sarah_wiggum)
-vive(ralph_wiggum, springfield)
-estudia(ralph_wiggum, colegio_primaria)
-not(come(ralph_wiggum, churrasco))
-not(come(ralph_wiggum, criollo))
-not(come(ralph_wiggum, chorizo))
-es(ralph_wiggum, vegetariano)
-gusta(ralph_wiggum, quemar_cosas)
+pareja(homer, marge). 
+pareja(marge, homer). 
+pareja(ned_flanders, edna_krabappel). 
+pareja(edna_krabappel, ned_flanders). 
+pareja(clancy_wiggum, sarah_wiggum).
+ pareja(sarah_wiggum, clancy_wiggum).
 
 
-% REGLAS
+% REGLAS 
 
-invitado(X) :- familia(X, simpson), vive(X, casa_springfield) 
-invitado(X) :- padre(X, Y), padre(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
-invitado(X) :- madre(X, Y), madre(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
-invitado(X) :- hermanos(X, Y), hermanos(Y, X), familia(Y, simpson), vive(Y, casa_springfield), vive(X, springfield), X\==Y
-club_lectura(X) :- gusta(X, leer), mujer(X), adulto(X)
-amigo(homer, X) :- amigo(X, homer), trabaja_en(X, nuclear), count(aficcion(X, _) == aficcion(homer, _)) > 1
-amigo(marge, X) :- amigo(X, marge), club_lectura(X)
-amigo(marge, X) :- adulto(X), amigo(X, marge)
-invitado(X) :- amigo(X, homer), amigo(homer, X)
-invitado(X) :- amigo(X, marge), amigo(marge, X)
-invitado(Y) :- amigo(X, homer), amigo(homer, X), pareja(X, Y), pareja(Y, X)
-invitado(Y) :- amigo(X, marge), amigo(marge, X), pareja(X, Y), pareja(Y, X)
-invitado(Y) :- amigo(X, homer), amigo(homer, X), hijo(Y, X), amigo(lisa, Y), amigo(Y, lisa)
-invitado(Y) :- amigo(X, marge), amigo(marge, X), hijo(Y, X), amigo(lisa, Y), amigo(Y, lisa)
-invitado(Y) :- amigo(X, homer), amigo(homer, X), hijo(Y, X), amigo(bart, Y), amigo(Y, bart)
-invitado(Y) :- amigo(X, marge), amigo(marge, X), hijo(Y, X), amigo(bart, Y), amigo(Y, bart)
-amigo(lisa, X) :- amigo(X, lisa), estudia(X, springfield)
-amigo(bart, X) :- amigo(X, bart), estudia(X, springfield)
+miembro_familia_casa(X) :- vive(X, casa_springfield), X \= maggie.
 
-not(invitado(X)) :- trabaja(X, profesor)
-not(invitado(X)) :- bebe(X)
+invitado_por_familia(X) :- miembro_familia_casa(Y), (padre(X,Y); madre(X,Y); hermanos(X,Y)), vive(X, springfield).
 
-unidades(X, tofu, 2) :- vegetariano(X)
-unidades(X, criollo, 1) :- not(come(X, churrasco)), come(X, criollo), come(X, chourizo)
-unidades(X, chorizo, 1) :- not(come(X, churrasco)), come(X, criollo), come(X, chourizo)
-unidades(X, churrasco, 2) :- come(X, churrasco), not(come(X, criollo)), not(come(X, chourizo))
-unidades(X, churrasco, 1) :- come(X, churrasco), come(X, criollo), not(come(X, chourizo))
-unidades(X, criollo, 1) :-  come(X, churrasco), come(X, criollo), not(come(X, chourizo))
-unidades(X, churrasco, 1) :- come(X, churrasco), not(come(X, criollo)), come(X, chourizo)
-unidades(X, chorizo, 1) :-  come(X, churrasco), not(come(X, criollo)), come(X, chourizo)
-unidades(X, churrasco, 1) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
-unidades(X, criollo, 0.5) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
-unidades(X, chourizo, 0.5) :- come(X, churrasco), come(X, criollo), come(X, chourizo), come(X, tofu)
+amigo_de_homer(X) :- trabaja(X, central_nuclear), X \= homer, comparte_aficion(X, homer), vive(X, springfield).
 
-bebe(X, cerveza) :- gusta(X, bar_moe), adulto(X)
-bebe(X, vino) :- not(gusta(X, bar_moe)), adulto(X)
-bebe(X, limonada) :- niño(X)
+comparte_aficion(X, Y) :- aficion(X, A), aficion(Y, A).
+
+amiga_de_marge(X) :- (vecino_adulto(X, marge); (mujer(X), adulto(X), aficion(X, leer))), vive(X, springfield).
+
+vecino_adulto(X, _) :- vive(X, casa_lado_simpson), adulto(X).
+
+pareja_invitada(X) :- (amigo_de_homer(Y); amiga_de_marge(Y)), pareja(Y, X), vive(X, springfield).
+
+hijo_invitado(X) :- (amigo_de_homer(Y); amiga_de_marge(Y)), (padre(Y,X); madre(Y,X)), estudia_colegio_primaria(X).
+
+estudia_colegio_primaria(X) :- niño(X), estudia(X, colegio_primaria).
+
+excluido(X) :- trabaja(X, colegio_primaria).
+
+invitado(X) :- (miembro_familia_casa(X); invitado_por_familia(X); amigo_de_homer(X); amiga_de_marge(X); pareja_invitada(X); hijo_invitado(X)), not(excluido(X)).
+
+comida(X, salchichas_tofu(2)) :- not(come(X, churrasco)), not(come(X, criollo)), not(come(X, chorizo)).
+comida(X, [costilla(1), medio(criollo), medio(chorizo)]) :- come(X, churrasco), come(X, criollo), come(X, chorizo).
+comida(X, [costilla(1), criollo(1)]) :- come(X, churrasco), come(X, criollo), not(come(X, chorizo)).
+comida(X, [costilla(1), chorizo(1)]) :- come(X, churrasco), not(come(X, criollo)), come(X, chorizo).
+comida(X, costilla(2)) :- come(X, churrasco), not(come(X, criollo)), not(come(X, chorizo)).
+comida(X, [criollo(1), chorizo(1)]) :- not(come(X, churrasco)), come(X, criollo), come(X, chorizo).
+
+bebida(X, cerveza) :- adulto(X), (aficion(X, beber_bar_moe); aficion(X, ir_bar_moe)).
+bebida(X, vino) :- adulto(X), not(bebida(X, cerveza)).
+bebida(X, limonada) :- niño(X).
