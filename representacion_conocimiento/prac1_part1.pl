@@ -86,7 +86,7 @@ amigos(X, Y) :- gusta(X, A), gusta(Y, A), X\=Y.
 % EJERCICIO 3
 
 % a- Calquera que non sexa vexetariano come no Krusty Burger.
-come(X, krusty_burger) :- not(es(X, vegetariano)).
+come(X, krusty_burger) :- not(gusta(X, carne)).
 
 % b- Todos os homes maiores de 30 anos e menores de 60 que traballan na central acuden ao bar de Moe.
 come(X, bar_moe) :- hombre(X), edad(X, N), N > 30, N < 60, trabaja(X, central_nuclear).
@@ -112,7 +112,7 @@ pierde_cabeza(homer) :- not(tiene(homer, cerveza)), not(tiene(homer, television)
 % findall(Y, (adulto(Y), gusta(Y, pintadas)), Adultos), length(Adultos, CantidadAdultos).
 
 % d- Cantas parellas de amigos son recíprocas?
-% findall((X, Y), (amigos(X, Y), amigos(Y, X), X \= Y), Parejas), length(Parejas, Cantidad).
+% findall((X, Y), (amigos(X, Y), amigos(Y, X), X @< Y), Parejas), length(Parejas, Cantidad).  % X @< Y es un operador que devuelve true sólo si el primer elemento está antes que el segundo, de esta forma evitamos contar el doble de parejas (X,Y),(Y,X) 
 
 % e- Quen son as nais dos personaxes que teñen relación de medio irmán con algún outro personaxe?
-% medio_hermanos(X, Y), madre(X, M).
+% findall(M, (medio_hermanos(X, _), madre(X, M)), Madres)
