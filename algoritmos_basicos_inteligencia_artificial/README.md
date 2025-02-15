@@ -32,7 +32,7 @@ docker run --user root -e NB_UID=$(id -u) -e NB_GID=$(id -g) -e CHOWN_HOME=yes -
 
 Este es el que funciona correctamente:
 
-docker run --user root -e NB_UID=$(id -u) -e NB_GID=$(id -g) -e CHOWN_HOME=yes -e CHOWN_HOME_OPTS='-R' -it --rm --name="AIBA" -v "${PWD}":/home/jovyan/work -p 8888:8888 gria-abia2425 start-notebook.sh --ServerApp.token=''
+docker run --user root -e NB_UID=1000 -e NB_GID=100 -e CHOWN_HOME=yes -e CHOWN_HOME_OPTS='-R' -it --rm --name="AIBA" -v "${PWD}:/home/jovyan/work" -p 8888:8888 gria-abia2425 start-notebook.sh --ServerApp.token=''
 
 
 ```

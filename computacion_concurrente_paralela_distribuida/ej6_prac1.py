@@ -1,5 +1,7 @@
 from memory_profiler import profile
 import numpy as np
+import time
+
 
 @profile(precision=6)
 def types():
@@ -41,9 +43,16 @@ def numpy():
     del c, d, tr, trcopy, concat, split
 
 def main():
+    comienzo = time.time()
     types()
+    fin_t = time.time()
+    print(fin_t - comienzo)
     listas()
+    fin_l = time.time()
+    print(fin_l - comienzo)
     numpy()
+    fin_n = time.time()
+    print(fin_n - comienzo)
 
 if __name__ == '__main__':
     main()
@@ -54,3 +63,4 @@ if __name__ == '__main__':
 # mprof run ej6_prac1.py
 # mprof plot
 
+# mprof peak

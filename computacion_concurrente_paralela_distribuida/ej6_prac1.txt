@@ -1,12 +1,20 @@
 Line #    Mem usage    Increment  Occurrences   Line Contents
 =============================================================
-    13  63.347656 MiB  63.347656 MiB           1   @profile(precision=6)  # Se declara la función, consumiendo memoria
-    def listas():
-    15 139.644531 MiB  76.296875 MiB           1       a = [1] * (10 ** 7)  # Se declcara la variable a y se incrementa la memoria debido al almacenamiento del vector
-    16 292.234375 MiB 152.589844 MiB           1       b = [2] * (2 * 10 ** 7)  # Se declara la variable b, que consume el doble que a, al tener el doble de elementos que a
-    17 521.117188 MiB 228.882812 MiB           1       c = a + b  # En c realizamos la suma de a+b, lo que almacena la suma de ambos (76+152=228)
-    18 521.117188 MiB   0.000000 MiB           1       d = c  # Como en python las variables usan punteros, no hace falta volver a crear el valor de c, d apunta hacia c
-    19 368.527344 MiB -152.589844 MiB           1       del b  # Se reduce el uso de memoria en 152MB al eliminar b
-    20 292.230469 MiB -76.296875 MiB           1       a = None  # Se eliminan los valores anteriores de a y se sustituyen por un None
-    21 292.230469 MiB   0.000000 MiB           1       del c  # Como a no almacena nada y se ha eliminado b, al eliminar c no se libera nada de memoria
-    22  63.347656 MiB -228.882812 MiB           1       del d  # Se vuelve a reducir la memoria usada al eliminar los valores de d
+    26  63.351562 MiB  63.351562 MiB           1   @profile(precision=6)
+    27                                         def numpy():
+    28  63.351562 MiB   0.000000 MiB           1       SIZE = int(1e4)
+    29 826.296875 MiB 762.945312 MiB           1       a = np.random.rand(SIZE, SIZE)
+    30 1589.238281 MiB 762.941406 MiB           1       b = np.random.rand(SIZE, SIZE)
+    31 2352.179688 MiB 762.941406 MiB           1       b2 = b.copy()
+    32 2352.179688 MiB   0.000000 MiB           1       b3 = b
+    33 3115.128906 MiB 762.949219 MiB           1       c = a + b
+    34 2352.187500 MiB -762.941406 MiB           1       del b2
+    35 2352.187500 MiB   0.000000 MiB           1       del b3
+    36 1589.246094 MiB -762.941406 MiB           1       a = None
+    37 2352.187500 MiB 762.941406 MiB           1       d = np.random.rand(SIZE, SIZE)
+    38 2352.246094 MiB   0.058594 MiB           1       sum = np.sum(d)
+    39 2352.246094 MiB   0.000000 MiB           1       tr = d.T
+    40 3115.191406 MiB 762.945312 MiB           1       trcopy = d.T.copy()
+    41 4641.074219 MiB 1525.882812 MiB           1       concat = np.concatenate((c, d), axis=0)
+    42 4641.093750 MiB   0.019531 MiB           1       split = np.split(concat, 2, axis=0)
+    43 826.386719 MiB -3814.707031 MiB           1       del c, d, tr, trcopy, concat, split
