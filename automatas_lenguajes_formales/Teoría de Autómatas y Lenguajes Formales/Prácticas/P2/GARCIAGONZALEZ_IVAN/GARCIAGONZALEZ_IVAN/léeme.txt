@@ -1,0 +1,6 @@
+Este programa lee la definición de un autómata de un archivo de texto plano según las especificaciones y que esté en la misma carpeta en la que se ejecuta (con los .class). 
+Es un programa en java, por lo que para ejecutarlo hay que compilar los archivos .java y ejecutar los .class. Debido a las versiones que tengo en mi equipo, los comandos que yo utilizo para compilar y ejecutar, respectivamente, son:
+javac -source 1.8 -target 1.8 Main.java Consola.java
+java Main <nombre_archivo> <cadena>
+Debido a que son 3 archivos, no podía nombrar uno solo como se pide en el documento de la práctica "Código fuente autodocumentado, en un fichero de texto plano de nombre
+APELLIDOS_NOMBRE_fuente.txt".
