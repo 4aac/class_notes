@@ -192,6 +192,58 @@ suma_par_impar()
 
 
 # 9. Desarrolla un programa en R que permita analizar un número entero dado por el usuario. El programa deberá: a) Calcular el número de cifras que tiene el número entero. b) Determinar cuál es la menor y la mayor cifra presente en el número. c) Identificar la posición que ocupan la menor y la mayor cifra en el número. d) Finalmente, mostrar al usuario el número de cifras, el valor de la menor y la mayor cifra, y la posición que ocupan cada una de ellas. El programa deberá definir una función llamada analizar_numeros que tome como entrada el número entero a analizar y devuelva los resultados mencionados anteriormente.
+analizar_numeros = function() {
+    input = as.integer(readline(prompt = "Introduce un número entero: "))
+    cifras = c()
+    mayor = -Inf
+    menor = Inf
+    pos_mayor = 0
+    pos_menor = 0
+    posicion = 1
+    
+    a = input
+    while (a > 0) {
+        cifra = a %% 10  # Módulo para conseguir la última cifra del número (4567 -> 7)
+        cifras = c(cifras, cifra)
+        if (cifra > mayor) {
+            mayor = cifra
+            pos_mayor = posicion
+        } else if (cifra < menor) {
+            menor = cifra
+            pos_menor = posicion
+        }
+        a = a %/% 10  # División entera para reducir las decenas (4567 -> 456)
+        posicion = posicion + 1
+    }
+    return(list(input = input, 
+                num_cifras = length(cifras), 
+                mayor = mayor, 
+                pos_mayor = pos_mayor, 
+                menor = menor, 
+                pos_menor = pos_menor))
+}
+
+analizar_numeros()
+
+
+# 10. Escribe una función par.impar en R que realice la suma de todos los números pares y también de todos los número impares comprendidos entre 1 y 200. La salida se muestra a continuación: > par.impar() La suma de los pares es: 10100 La suma de los impares es: 10000
+par.impar = function() {
+    suma_par = 0
+    suma_impar = 0
+    for (i in 1:200) {
+        if (i%%2 == 0) {
+            suma_par = suma_par + i
+        } else {
+            suma_impar = suma_impar + i
+        }
+    }
+    cat("La suma de los pares es", suma_par, "\n")
+    cat("La suma de los impares es", suma_impar)
+}
+par.impar()
+
+
+# 11. Desarrolla una función en R llamada suma_producto que solicite al usuario que introduzca cinco números por teclado. Además, el programa deberá ofrecer al usuario la posibilidad de elegir entre sumar los números o multiplicarlos. Si se elige la opción de suma, la función devolverá un mensaje con el resultado de la suma de los cinco números. Si se elige la opción de producto, la función devolverá un mensaje con el resultado del producto de los cinco números. Para realizar los cálculos, puedes utilizar las funciones sum y prod. El programa deberá definir una función llamada suma_producto que tome como entrada los cinco números ingresados por el usuario y la opción elegida (suma o producto) y devuelva el resultado correspondiente.
 
 
 
