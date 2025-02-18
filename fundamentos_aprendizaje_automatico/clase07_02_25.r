@@ -220,7 +220,7 @@ barplot(porcentaje_supervivientes, col = "gold", border = "black")
 
 
 # o
-table(datos$superviviente, datos$clase
+table(datos$superviviente, datos$clase)
 datos2 = as.matrix(table(datos$superviviente, datos$clase))
 apply(datos2, 2, sum)
 barplot( datos[2, ] / apply(datos2, 2, sum), las=1 )
