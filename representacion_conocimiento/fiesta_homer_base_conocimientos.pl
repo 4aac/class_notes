@@ -1,4 +1,4 @@
-%HECHOS 
+% HECHOS 
 
 hombre(homer). 
 hombre(bart). 
