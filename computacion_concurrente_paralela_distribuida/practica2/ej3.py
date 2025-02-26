@@ -19,9 +19,83 @@ de sincronizacion entre hilos vistos en clase para solucionar la condicion de ca
 """
 
 import threading
+import time
 
-def condicion_carrera_incorrecto():
-    ...
+contador2 = 0
+lock = threading.Lock()
 
-def condicion_carrera_correcto():
-    ...
+# Función que incrementa el contador con sincronización añadiéndole el lock
+def con_incrementar(n,):
+    global contador2
+    for _ in range(n):
+        with lock:
+            contador2 += int(1)
+
+# Función que decrementa el contador con sincronización con el lock incluido
+def con_decrementar(n,):
+    global contador2
+    for _ in range(n):
+        with lock:
+            contador2 -= int(1)
+
+def con_sincronizar():
+    n = 10000000  # Número de operaciones por hilo
+    
+    hilo1 = threading.Thread(target=con_incrementar, args=(n,))
+    hilo2 = threading.Thread(target=con_decrementar, args=(n,))
+    
+    hilo1.start()
+    hilo2.start()
+    
+    hilo1.join()
+    hilo2.join()
+    
+    print(f"Valor final del contador (con sincronización): {contador2}")
+
+
+# ------------------------ # 
+
+
+contador2 = 0
+lock = threading.Lock()
+
+# Función que incrementa el contador con sincronización añadiéndole el lock
+def con_incrementar(n,):
+    global contador2
+    for _ in range(n):
+        with lock:
+            contador2 += 1
+
+# Función que decrementa el contador con sincronización con el lock incluido
+def con_decrementar(n,):
+    global contador2
+    for _ in range(n):
+        with lock:
+            contador2 -= 1
+
+def con_sincronizar():
+    n = 10000000  # Número de operaciones por hilo
+    
+    hilo1 = threading.Thread(target=con_incrementar, args=(n,))
+    hilo2 = threading.Thread(target=con_decrementar, args=(n,))
+    
+    hilo1.start()
+    hilo2.start()
+    
+    hilo1.join()
+    hilo2.join()
+    
+    print(f"Valor final del contador (con sincronización): {contador2}")
+
+if __name__ == "__main__":
+    start = time.time()
+    con_sincronizar()
+    end = time.time()
+    print(f'Tiempo de ejecución {end-start} s.')
+
+
+    start = time.time()
+    con_sincronizar()
+    end = time.time()
+    print(f'Tiempo de ejecución {end-start} s.')
+

@@ -30,7 +30,15 @@ import threading
 import time
 from random import randint
 
-posicion = ...
+posicion = dict()
 def carrera_coches(num_coches, longitud):
     global posicion
-    ...
+
+    # Creamos las distancias para cada coche
+    distancias_restantes = dict()
+    for i in range(num_coches):
+        distancias_restantes[f"coche{i+1}"] = longitud
+
+    
+        
+    
