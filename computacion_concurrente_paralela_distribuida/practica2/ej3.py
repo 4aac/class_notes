@@ -9,8 +9,8 @@ sobre una variable compartida.
 (a) El programa creara y gestionara 2 hilos que se ejecutaran de manera concurrente y utilizaran una
 misma variable compartida.
 (b) La variable compartida debe ser un contador numerico sobre el que los hilos realicen operaciones de
-forma concurrente de la siguiente manera: uno de los hilos sumara N veces en el contador y el otro
-restara sobre el mismo contador, de manera que si la operacion se realizase correctamente el contador
+forma concurrente de la siguiente manera: uno de los hilos sumara N veces en el contador1 y el otro
+restara sobre el mismo contador, de manera que si la operacion se realizase correctamente el contador1
 deberia valer 0 al final.
 (c) Al ejecutar el programa debe poder observarse que el acceso no controlado a la variable compartida
 produce resultados incorrectos.
@@ -21,63 +21,62 @@ de sincronizacion entre hilos vistos en clase para solucionar la condicion de ca
 import threading
 import time
 
+contador1 = 0
+
+def sin_sinc_aumentar(n):
+    global contador1
+    for _ in range(n):
+        contador1 += int(1)  # Actúa como función para forzar error
+
+def sin_sinc_disminuir(n):
+    global contador1
+    for _ in range(n):
+        contador1 -= int(1) 
+
+def sin_sincronizacion():
+    ops_hilo = 10000000 
+    
+    hilo1 = threading.Thread(target=sin_sinc_aumentar, args=(ops_hilo,))
+    hilo2 = threading.Thread(target=sin_sinc_disminuir, args=(ops_hilo,))
+    
+    hilo1.start()
+    hilo2.start()
+    
+    hilo1.join()
+    hilo2.join()
+    
+    print(f"Valor final del contador1 (sin sincronizacion): {contador1}")
+
+if __name__ == "__main__":
+    start = time.time()
+    sin_sincronizacion()
+    end = time.time()
+    print(f'Tiempo de ejecucion {end-start} segundos')
+
+
+# --------------------------------------x--------------------------------------
+
+
 contador2 = 0
 lock = threading.Lock()
 
-# Función que incrementa el contador con sincronización añadiéndole el lock
-def con_incrementar(n,):
+def con_sinc_aumentar(n):
     global contador2
     for _ in range(n):
         with lock:
-            contador2 += int(1)
+            contador2 += int(1)  # Actúa como función para forzar error
 
-# Función que decrementa el contador con sincronización con el lock incluido
-def con_decrementar(n,):
+def con_sinc_disminuir(n):
     global contador2
     for _ in range(n):
         with lock:
             contador2 -= int(1)
 
-def con_sincronizar():
-    n = 10000000  # Número de operaciones por hilo
+def con_sincronizacion():
+    ops_hilo = 10000000 
     
-    hilo1 = threading.Thread(target=con_incrementar, args=(n,))
-    hilo2 = threading.Thread(target=con_decrementar, args=(n,))
-    
-    hilo1.start()
-    hilo2.start()
-    
-    hilo1.join()
-    hilo2.join()
-    
-    print(f"Valor final del contador (con sincronización): {contador2}")
-
-
-# ------------------------ # 
-
-
-contador2 = 0
-lock = threading.Lock()
-
-# Función que incrementa el contador con sincronización añadiéndole el lock
-def con_incrementar(n,):
-    global contador2
-    for _ in range(n):
-        with lock:
-            contador2 += 1
-
-# Función que decrementa el contador con sincronización con el lock incluido
-def con_decrementar(n,):
-    global contador2
-    for _ in range(n):
-        with lock:
-            contador2 -= 1
-
-def con_sincronizar():
-    n = 10000000  # Número de operaciones por hilo
-    
-    hilo1 = threading.Thread(target=con_incrementar, args=(n,))
-    hilo2 = threading.Thread(target=con_decrementar, args=(n,))
+    hilo1 = threading.Thread(target=con_sinc_aumentar, args=(ops_hilo))
+    hilo2 = threading.Thread(target=con_sinc_disminuir, args=(ops_hilo))
     
     hilo1.start()
     hilo2.start()
@@ -85,17 +84,10 @@ def con_sincronizar():
     hilo1.join()
     hilo2.join()
     
-    print(f"Valor final del contador (con sincronización): {contador2}")
+    print(f"Valor final del contador (con sincronizacion): {contador2}")
 
 if __name__ == "__main__":
     start = time.time()
-    con_sincronizar()
+    con_sincronizacion()
     end = time.time()
-    print(f'Tiempo de ejecución {end-start} s.')
-
-
-    start = time.time()
-    con_sincronizar()
-    end = time.time()
-    print(f'Tiempo de ejecución {end-start} s.')
-
+    print(f'Tiempo de ejecucion {end-start} segundos')

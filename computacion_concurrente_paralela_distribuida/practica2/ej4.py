@@ -30,15 +30,54 @@ import threading
 import time
 from random import randint
 
-posicion = dict()
-def carrera_coches(num_coches, longitud):
+posicion = 1
+posicion_lock = threading.Lock()
+inicio_carrera = threading.Barrier(5)  # Se modificará según el número de coches
+
+def coche(id_coche, longitud_carrera):
     global posicion
-
-    # Creamos las distancias para cada coche
-    distancias_restantes = dict()
-    for i in range(num_coches):
-        distancias_restantes[f"coche{i+1}"] = longitud
-
     
-        
+    # Tiempo aleatorio para llegar a la línea de salida
+    tiempo_llegada = randint(1, 10)
+    time.sleep(tiempo_llegada)
+    print(f"Coche {id_coche} ha llegado a la línea de salida.")
     
+    # Esperar a que todos los coches lleguen a la línea de salida
+    inicio_carrera.wait()
+    
+    start = time.time()
+    distancia_recorrida = 0
+    while distancia_recorrida < longitud_carrera:
+        distancia_recorrida += randint(1, 10)
+        time.sleep(0.1)
+    end = time.time()
+
+    print(f"Coche {id_coche} ha cruzado la meta en {end-start} s.")
+    
+    # Asignar posición de llegada con sincronización
+    with posicion_lock:
+        posicion_final = posicion
+        posicion += 1
+    
+    print(f"Coche {id_coche} ha terminado en la posición {posicion_final}.")
+
+def main():
+    num_coches = int(input("Ingrese el número de coches en la carrera: "))
+    longitud_carrera = int(input("Ingrese la longitud de la carrera en metros: "))
+    
+    global inicio_carrera
+    inicio_carrera = threading.Barrier(num_coches)
+    
+    hilos = []
+    for i in range(1, num_coches + 1):
+        hilo = threading.Thread(target=coche, args=(i, longitud_carrera))
+        hilos.append(hilo)
+        hilo.start()
+    
+    for hilo in hilos:
+        hilo.join()
+    
+    print("La carrera ha finalizado.")
+
+if __name__ == "__main__":
+    main()
