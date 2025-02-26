@@ -1,3 +1,7 @@
+% ASIER ACUÑA CASAL
+% 2º GrIA - REPRESENTACIÓN DEL CONOCIMIENTO
+
+
 /* HECHOS */
 
 % EJERCICIO 1
@@ -10,9 +14,11 @@ hombre(kirk).
 hombre(kearny).
 hombre(jimbo).
 hombre(dolph).
+
 mujer(lisa).
 mujer(marge).
 mujer(maggie).
+
 bebe(maggie).
 
 abuson(kearny).
@@ -61,12 +67,10 @@ considera_amigo(milhouse, bart).
 % EJERCICIO 2
 
 % a. Se estuda no colexio, entón é menor. Tamén é menor se é un bebé. 
-es_menor(X) :- estudia(X, _).
-es_menor(X) :- bebe(X).
+es_menor(X) :- estudia(X, _); bebe(X).
 
 % b. Se é pai de alguén, entón é adulto e é home. Igualmente, se é nai de alguén, entón é adulto e é muller.
-adulto(X) :- padre(_, X).
-adulto(X) :- madre(_, X).
+adulto(X) :- padre(_, X); madre(_, X).
 hombre(X) :- padre(_, X).
 mujer(X) :- madre(_, X).
 
@@ -74,8 +78,7 @@ mujer(X) :- madre(_, X).
 hermanos(X, Y) :- padre(X, A), padre(Y, A), madre(X, B), madre(Y, B), X \= Y.
 
 % d. Se dous personaxes distintos comparten pai ou nai, pero non ambos, entón son medio irmáns.
-medio_hermanos(X, Y) :- padre(X, A), padre(Y, A), madre(X, B1), madre(Y, B2), B1\=B2, X\=Y.
-medio_hermanos(X, Y) :- madre(X, A), madre(Y, A), padre(X, B1), padre(Y, B2), B1\=B2, X\=Y.
+medio_hermanos(X, Y) :- ((padre(X, A), padre(Y, A), madre(X, B1), madre(Y, B2)); (madre(X, A), madre(Y, A), padre(X, B1), padre(Y, B2))), B1\=B2, X\=Y.
 
 % e. Se é abusón, gústanlle as pintadas.
 gusta(X, pintadas) :- abuson(X).

@@ -1,3 +1,27 @@
+% ASIER ACUÑA CASAL
+% 2º GrIA - REPRESENTACIÓN DEL CONOCIMIENTO
+
+
+% Declaración de hechos dinámicos
+
+:- dynamic hombre/1.
+:- dynamic mujer/1.
+:- dynamic adulto/1.
+:- dynamic ninho/1.
+:- dynamic bebe/1.
+:- dynamic vive/2.
+:- dynamic trabaja/2.
+:- dynamic vecino/2.
+:- dynamic come/2.
+:- dynamic aficion/2.
+:- dynamic padre/2.
+:- dynamic madre/2.
+:- dynamic hijo/2.
+:- dynamic hermanos/2.
+:- dynamic pareja/2.
+:- dynamic estudia/2.
+
+
 % HECHOS 
 
 hombre(homer). 
@@ -14,6 +38,7 @@ hombre(kirk_van_houten).
 hombre(milhouse_van_houten). 
 hombre(clancy_wiggum). 
 hombre(ralph_wiggum).
+
 mujer(marge). 
 mujer(lisa).
 mujer(maggie). 
@@ -40,12 +65,14 @@ adulto(luann_van_houten).
 adulto(kirk_van_houten). 
 adulto(clancy_wiggum). 
 adulto(sarah_wiggum).
+
 ninho(bart). 
 ninho(lisa). 
 ninho(rod_flanders). 
 ninho(todd_flanders). 
 ninho(milhouse_van_houten). 
 ninho(ralph_wiggum).
+
 bebe(maggie).
 
 vive(homer, casa_springfield). 
@@ -71,6 +98,18 @@ vive(milhouse_van_houten, springfield).
 vive(clancy_wiggum, springfield). 
 vive(sarah_wiggum, springfield). 
 vive(ralph_wiggum, springfield).
+vive(homer, springfield). 
+vive(marge, springfield). 
+vive(bart, springfield). 
+vive(lisa, springfield). 
+vive(maggie, springfield). 
+vive(abe, springfield). 
+vive(patty_bouvier, springfield). 
+vive(selma_bouvier, springfield). 
+vive(lenny_leonard, springfield).
+vive(ned_flanders, springfield). 
+vive(rod_flanders, springfield). 
+vive(todd_flanders, springfield). 
 
 trabaja(homer, central_nuclear). 
 trabaja(marge, ama_casa). 
@@ -86,7 +125,7 @@ trabaja(kirk_van_houten, espantapajaros).
 trabaja(clancy_wiggum, jefe_policia). 
 trabaja(luann_van_houten, oficina_desconocida).
 
-vecino(ned_flanders, simpons).
+vecino(ned_flanders, simpsons).
 vecino(todd_flanders, simpsons).
 vecino(rod_flanders, simpsons).
 
@@ -168,7 +207,7 @@ padre(homer, lisa).
 padre(homer, maggie).  
 padre(abe, homer). 
 padre(ralph_wiggum, clancy_wiggum).
-padre(kirk_van_houten, milhouse_van_houten)
+padre(kirk_van_houten, milhouse_van_houten).
 madre(marge, bart). 
 madre(marge, lisa). 
 madre(marge, maggie).
@@ -183,11 +222,10 @@ hijo(maggie, homer).
 hijo(maggie, marge).
 hijo(homer, abe).
 hijo(clancy_wiggum, ralph_wiggum).
-hijo(ralph_wiggum, sarah_wiggum.)
+hijo(ralph_wiggum, sarah_wiggum).
 hijo(marge, jackie_bouvier).
-hijo(milhouse_van_houten, luann_van_houten)
-hijo(milhouse_van_houten, kirk_van_houten)
-
+hijo(milhouse_van_houten, luann_van_houten).
+hijo(milhouse_van_houten, kirk_van_houten).
 
 hermanos(patty_bouvier, marge). 
 hermanos(marge, patty_bouvier). 
@@ -195,7 +233,7 @@ hermanos(selma_bouvier, marge).
 hermanos(marge, selma_bouvier). 
 hermanos(patty_bouvier, selma_bouvier). 
 hermanos(selma_bouvier, patty_bouvier).
-hermans(bart, maggie).
+hermanos(bart, maggie).
 hermanos(maggie, bart).
 hermanos(bart, lisa).
 hermanos(lisa, bart).
@@ -204,7 +242,6 @@ hermanos(maggie, lisa).
 hermanos(rod_flanders, todd_flanders).
 hermanos(todd_flanders, rod_flanders).
 
-
 pareja(homer, marge). 
 pareja(marge, homer). 
 pareja(ned_flanders, edna_krabappel). 
@@ -212,24 +249,24 @@ pareja(edna_krabappel, ned_flanders).
 pareja(clancy_wiggum, sarah_wiggum).
 pareja(sarah_wiggum, clancy_wiggum).
 
-
 estudia(bart, colegio_primaria).
 estudia(lisa, colegio_primaria).
 estudia(rod_flanders, colegio_religioso).
-milhouse_van_houten(milhouse_van_houten, colegio_primaria).
+estudia(milhouse_van_houten, colegio_primaria).
 estudia(ralph_wiggum, colegio_primaria).
-
 
 
 % REGLAS 
 
 miembro_familia_casa(X) :- vive(X, casa_springfield), X \= maggie.
 
+miembro_familia_general(X) :- vive(Y, casa_springfield), (padre(X, Y); madre(X, Y); hermanos(X, Y)), vive(X, springfield).
+
 amigo_de_homer(X) :- trabaja(X, central_nuclear), X \= homer, aficion(X, A), aficion(homer, A), vive(X, springfield).
 
 club_lectura(X) :- mujer(X), adulto(X), aficion(X, leer).
 
-amiga_de_marge(X) :- (vive(X, casa_lado_simpson), adulto(X)); club_lectura(X).
+amiga_de_marge(X) :- ((vive(X, casa_lado_simpson), adulto(X)); club_lectura(X)), X \= marge.
 
 pareja_invitada(X) :- (amigo_de_homer(Y); amiga_de_marge(Y)), pareja(Y, X), pareja(X, Y), vive(X, springfield).
 
@@ -237,7 +274,7 @@ hijo_invitado(X) :- (amigo_de_homer(Y); amiga_de_marge(Y)), (padre(Y,X); madre(Y
 
 excluido(X) :- trabaja(X, colegio_primaria).
 
-invitado(X) :- (miembro_familia_casa(X); invitado_por_familia(X); ((padre(X,Y); madre(X,Y); hermanos(X,Y)); amigo_de_homer(X); amiga_de_marge(X); pareja_invitada(X); hijo_invitado(X))), not(excluido(X)).
+invitado(X) :- (miembro_familia_casa(X); miembro_familia_general(X); amigo_de_homer(X); amiga_de_marge(X); pareja_invitada(X); hijo_invitado(X)), not(excluido(X)).
 
 comida(X, salchichas_tofu(2)) :- not(come(X, churrasco)), not(come(X, criollo)), not(come(X, chorizo)).  % no comen carne
 comida(X, [costilla(1), medio(criollo), medio(chorizo)]) :- come(X, churrasco), come(X, criollo), come(X, chorizo). % come de todo
