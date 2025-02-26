@@ -34,7 +34,6 @@ Este es el que funciona correctamente:
 
 docker run --user root -e NB_UID=1000 -e NB_GID=100 -e CHOWN_HOME=yes -e CHOWN_HOME_OPTS='-R' -it --rm --name="AIBA" -v "${PWD}:/home/jovyan/work" -p 8888:8888 gria-abia2425 start-notebook.sh --ServerApp.token=''
 
-
 ```
 
 Una vez ejecutado el comando, podremos entrar al servidor de Jupyter Notebook a través de un navegador, en la dirección **[http://127.0.0.1:8888](http://127.0.0.1:8888)**.
