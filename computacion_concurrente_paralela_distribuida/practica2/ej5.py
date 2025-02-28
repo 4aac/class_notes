@@ -23,7 +23,74 @@ finalizacion de ambos consumidores e indicara la finalizacion del programa.
 """
 
 import threading
-import queue
+import time
+import random
+from queue import Queue
 
-def productor_consumidor(num_datos):
-    ...
+total_datos = 20
+tamaño_cola = 5
+
+temperatura_cola = Queue(maxsize=tamaño_cola)
+humedad_cola = Queue(maxsize=tamaño_cola)
+
+evento_final = threading.Event()
+
+def productor():
+    for i in range(1, total_datos+1):
+        hora = time.strftime("%H:%M:%S")
+
+        # Cada segundo añadir un dato de temperatura
+        temperatura = round(random.uniform(-10,40), 2)
+        if temperatura_cola.full():
+            print(f"PRODUCTOR: Cola de temperatura llena, no se puede agregar")
+        else:
+            temperatura_cola.put((temperatura,hora))
+            print(f"PRODUCTOR: Temperatura generada y añadida: {temperatura} ºC a las {hora}")
+
+        # Cada 5 segundos añadir un dato de humedad
+        if i%5 == 0:
+            humedad=round(random.uniform(0,100), 2)
+            if humedad_cola.full():
+                print("PRODUCTOR: Cola de humedad llena, no se puede agregar")
+            else:
+                humedad_cola.put((humedad,hora))
+                print(f"PRODUCTOR: Humedad generada y añadida: {humedad} % a las {hora}")
+    
+        time.sleep(1) #Captura cada segundo
+
+    evento_final.set() 
+    temperatura_cola.put((None, ""))
+    humedad_cola.put((None, ""))
+
+def consumidor_temperatura():
+    cola_vacia = False
+    while cola_vacia:
+        temperatura, hora = temperatura_cola.get()
+        if temperatura == None:
+            cola_vacia = True
+        print(f"CONSUMIDOR TEMPERATURA: Temperatura consumida: {temperatura} ºC a las {hora}")
+    print("CONSUMIDOR TEMPERATURA: Finalizado")
+
+def consumidor_humedad():
+    cola_vacia = False
+    while cola_vacia:
+        humedad, hora = humedad_cola.get()
+        if humedad == None:
+            cola_vacia = True
+        print(f"CONSUMIDOR HUMEDAD:Humedad consumida:{humedad} % a las {hora}")
+    print("CONSUMIDOR HUMEDAD: Finalizado")  
+
+hilo_productor = threading.Thread(target=productor)
+hilo_consumidor_temp = threading.Thread(target=consumidor_temperatura)
+hilo_consumidor_hum = threading.Thread(target=consumidor_humedad)
+
+hilo_productor.start()
+hilo_consumidor_temp.start()
+hilo_consumidor_hum.start()
+
+hilo_productor.join()
+hilo_consumidor_temp.join()
+hilo_consumidor_hum.join()
+
+
+print("Programa finalizado")
