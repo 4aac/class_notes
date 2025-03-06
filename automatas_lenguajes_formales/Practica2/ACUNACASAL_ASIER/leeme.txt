@@ -1,0 +1,7 @@
+Para ejecutar el programa, simplemente se debe ejecutar el archivo "main.py".
+
+Es posible seleccionar el archivo ".txt" correspondiente a la práctica o, si se desea ejecutar otro autómata, se debe comentar la variable "automata" actual y descomentar la variable "automata" alternativa.
+
+**Nota:** si el autómata de la práctica no funciona correctamente, es importante verificar y modificar la ruta del archivo ".txt" correspondiente.
+
+Finalmente, se debe copiar y pegar el autómata en el archivo indicado y ejecutar nuevamente el programa.

@@ -111,22 +111,22 @@ class MaquinaExpendedora:
 
         print(f"Estado final: {estados_actuales}")
         if self.comprobar_aceptada(estados_actuales):
-            print("RESULTADO: CADENA ACEPTADA.")
+            print("RESULTADO: CADENA ACEPTADA")
         else:
-            print("RESULTADO: CADENA NO ACEPTADA.")
+            print("RESULTADO: CADENA NO ACEPTADA")
 
         return self.comprobar_aceptada(estados_actuales)
 
 
 def main():
     """
-    Función para ejecutar la máquina expendedora.
+    Función para ejecutar la máquina expendedora (recomendable leer 'leeme'txt' antes de ejecutar).
     """
-    #automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ejDefinicion.txt")
-    automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\\automata_maquina_expendedora.txt")  # Archivo predefinido con el automata del enunciado
+    #automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ACUNACASAL_ASIER\ejDefinicion.txt")
+    automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ACUNACASAL_ASIER\\automata_maquina_expendedora.txt")  # Archivo predefinido con el automata del enunciado
     print("\nAutomata de la Máquina Expendedora: ")
     print(f"Estados: {automata.estados}")
-    print(f"Estados Finales: {automata.estados_finales}")
+    print(f"Estados finales: {automata.estados_finales}")
     print(f"Alfabeto: {automata.alfabeto}")
 
     cadena = input("\nIngrese la cadena a evaluar: ")

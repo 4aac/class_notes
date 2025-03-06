@@ -1,0 +1,5 @@
+Para ejecutar el programa simplemente hay que correr el archivo main.py.
+Para hacer esto se puede elegir el fichero .txt de la práctica o 
+en caso de querer ejecutar otro automata, simplemente comentar la variable automata
+y borrar el comentario de la siguiente variable automata. Despues pegar el autoamata 
+en el archivo correspondiente y volver a ejecutar el programa.

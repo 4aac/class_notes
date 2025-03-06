@@ -1,16 +1,8 @@
-#11 q00 q05 q10 q15 q20 q25 q30 q35 qaa qbb qcc qdd
-#5 q00 qaa qbb qcc qdd
-#7 5 1 2 a b c d
+#4 A B C D
+#1 A
+#2 0 1
 --TABLA DE TRANSICIONES--
-q00 q05 q10 q20 qaa qbb qcc qdd #
-q05 q10 q15 q25 qaa qbb qcc qdd #
-q10 q15 q20 q30 qaa qbb qcc qdd #
-q15 q20 q25 q35 qaa qbb qcc qdd #
-q20 q25 q30 # qaa qbb qcc qdd #
-q25 q30 q35 # qaa qbb qcc qdd #
-q30 q35 # # qaa qbb qcc qdd #
-q35 # # # qaa qbb qcc qdd #
-qaa # # # # # # # #
-qbb # # # # # # # #
-qcc # # # # # # # #
-qdd # # # # # # # #
+B # D # #
+A # C # #
+D # B # #
+C # A # #
