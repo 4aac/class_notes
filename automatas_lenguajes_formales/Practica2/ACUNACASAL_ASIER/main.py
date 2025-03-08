@@ -120,7 +120,7 @@ class MaquinaExpendedora:
 
 def main():
     """
-    Función para ejecutar la máquina expendedora (recomendable leer 'leeme'txt' antes de ejecutar).
+    Función para ejecutar la máquina expendedora (recomendable leer 'leeme.txt' antes de ejecutar).
     """
     #automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ACUNACASAL_ASIER\ejDefinicion.txt")
     automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ACUNACASAL_ASIER\\automata_maquina_expendedora.txt")  # Archivo predefinido con el automata del enunciado
