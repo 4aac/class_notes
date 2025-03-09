@@ -1,0 +1,7 @@
+(Animal Rex tiene-pelo)
+(Animal Rex tiene-manchas-Oscuras)
+(Animal Rex cor-leonada)
+(Animal Rex come-carne)
+(Animal Hedwig tiene-plumas)
+(Animal Hedwig vuela-bien)
+(Pai Hermes Fillo Hedwig)
