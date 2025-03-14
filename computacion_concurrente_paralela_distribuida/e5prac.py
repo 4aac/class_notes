@@ -28,6 +28,9 @@ import random
 from queue import Queue
 from datetime import datetime
 
+# Parámetros de configuración
+TOTAL_DATOS = 10  # Número total de datos a generar
+
 # Colas con tamaño máximo de 5 elementos
 cola_temperatura = Queue(maxsize=5)
 cola_humedad = Queue(maxsize=5)
@@ -43,68 +46,67 @@ def productor(num_datos):
     
     while datos_producidos < num_datos:
         # Generar temperatura cada segundo
-        temperatura = random.randint(-10, 40)  # Corregido a enteros como en el original
-        timestamp = datetime.now().strftime("%H:%M:%S")
+        timestamp = datetime.now().strftime('%H:%M:%S')
+        temperatura = round(random.uniform(-10, 40), 2)
         dato_temp = (temperatura, timestamp)
         
         if not cola_temperatura.full():
             cola_temperatura.put(dato_temp)
-            print(f"Producido temperatura: {temperatura:.1f}°C a las {timestamp}")
+            print(f'[PRODUCTOR] Temperatura generada: {temperatura}°C ({timestamp})')
             datos_producidos += 1
         else:
-            print("Cola de temperatura llena, no se pudo producir dato")
+            print('[PRODUCTOR] Cola de temperatura llena, no se pudo producir dato')
         
-        time.sleep(1)  # Espera de 1 segundo entre temperaturas
-        
-        # Generar humedad cada 5
+        # Generar humedad cada 5 datos
         if datos_producidos % 5 == 0:
-            humedad = random.randint(0, 100)  # Corregido a enteros como en el original
-            timestamp = datetime.now().strftime("%H:%M:%S")
+            humedad = round(random.uniform(0, 100), 2)
+            timestamp = datetime.now().strftime('%H:%M:%S')
             dato_hum = (humedad, timestamp)
             
             if not cola_humedad.full():
                 cola_humedad.put(dato_hum)
-                print(f"Producido humedad: {humedad:.1f}% a las {timestamp}")
+                print(f'[PRODUCTOR] Humedad generada: {humedad}% ({timestamp})')
             else:
-                print("Cola de humedad llena, no se pudo producir dato")
+                print('[PRODUCTOR] Cola de humedad llena, no se pudo producir dato')
         
-    print("Productor ha terminado de generar datos")
+        time.sleep(1)  # Espera de 1 segundo entre temperaturas
+    
+    print('[PRODUCTOR] Ha terminado de generar datos')
+
 
 def consumidor_temperatura():
     """
-    Hilo consumidor que procesa datos de temperatura
+    Consume datos de temperatura
     """
-    continuar = True
-    while continuar:
+    while True:
         dato = cola_temperatura.get()
         if dato == FIN:
             cola_temperatura.task_done()
-            continuar = False
-        else:  # Solo desempaquetar si no es FIN
-            temperatura, timestamp = dato
-            print(f"Consumido temperatura: {temperatura:.1f}°C generado a las {timestamp}")
-            cola_temperatura.task_done()
+            break
+        temperatura, timestamp = dato
+        print(f'[CONSUMIDOR TEMP] Temperatura consumida: {temperatura}°C ({timestamp})')
+        cola_temperatura.task_done()
+    print('[CONSUMIDOR TEMP] Finalizando...')
+
 
 def consumidor_humedad():
     """
-    Hilo consumidor que procesa datos de humedad
+    Consume datos de humedad
     """
-    continuar = True
-    while continuar:
+    while True:
         dato = cola_humedad.get()
         if dato == FIN:
             cola_humedad.task_done()
-            continuar = False
-        else:  # Solo desempaquetar si no es FIN
-            humedad, timestamp = dato
-            print(f"Consumido humedad: {humedad:.1f}% generado a las {timestamp}")
-            cola_humedad.task_done()
+            break
+        humedad, timestamp = dato
+        print(f'[CONSUMIDOR HUM] Humedad consumida: {humedad}% ({timestamp})')
+        cola_humedad.task_done()
+    print('[CONSUMIDOR HUM] Finalizando...')
+
 
 def main():
-    num_datos = 10
-    
     # Crear hilos
-    hilo_productor = threading.Thread(target=productor, args=(num_datos,))
+    hilo_productor = threading.Thread(target=productor, args=(TOTAL_DATOS,))
     hilo_cons_temp = threading.Thread(target=consumidor_temperatura)
     hilo_cons_hum = threading.Thread(target=consumidor_humedad)
     
@@ -115,7 +117,7 @@ def main():
     
     # Esperar a que el productor termine
     hilo_productor.join()
-    print("El hilo productor ha finalizado")
+    print('[PROGRAMA] El hilo productor ha finalizado')
     
     # Esperar a que las colas se vacíen
     cola_temperatura.join()
@@ -129,7 +131,7 @@ def main():
     hilo_cons_temp.join()
     hilo_cons_hum.join()
     
-    print("Programa finalizado")
+    print('[PROGRAMA] Estación meteorológica finalizada')
 
 if __name__ == "__main__":
     main()
