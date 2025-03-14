@@ -1,8 +1,11 @@
-#4 A B C D
-#1 A
-#2 0 1
+#7 A B C D E F G
+#2 F G
+#2 a b
 --TABLA DE TRANSICIONES--
-B # D # #
-A # C # #
-D # B # #
-C # A # #
+ # # B C #
+ # # D #
+E # # #
+B F # B # #
+G # F # #
+ # # #
+ # G # #

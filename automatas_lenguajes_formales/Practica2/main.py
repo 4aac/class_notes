@@ -23,7 +23,7 @@ class MaquinaExpendedora:
         self.estados_finales = self.leer_cabecera(contenido[1])
         self.alfabeto = self.leer_cabecera(contenido[2])
         self.tabla_transiciones = self.leer_tabla(contenido[4:], len(self.estados), len(self.alfabeto))
-        self.alfabeto.append("λ")  # Añadir la transición lambda al alfabeto
+        self.alfabeto.append("LAMBDA")  # Añadir la transición lambda al alfabeto
 
 
     def leer_cabecera(self, linea):
@@ -74,7 +74,7 @@ class MaquinaExpendedora:
         while continuar:
             nuevos_estados = estados_actuales[:]  # Copia de los estados
             for estado in estados_actuales:
-                nuevos_estados += self.funcion_transicion(estado, "λ")
+                nuevos_estados += self.funcion_transicion(estado, "LAMBDA")
             
             nuevos_estados = list(set(nuevos_estados))  # Usa set para eliminar duplicados
             if len(nuevos_estados) == len(estados_actuales):
@@ -122,8 +122,8 @@ def main():
     """
     Función para ejecutar la máquina expendedora.
     """
-    #automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ejDefinicion.txt")
-    automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\\automata_maquina_expendedora.txt")  # Archivo predefinido con el automata del enunciado
+    automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\ejDefinicion.txt")
+    #automata = MaquinaExpendedora("automatas_lenguajes_formales\Practica2\\automata_maquina_expendedora.txt")  # Archivo predefinido con el automata del enunciado
     print("\nAutomata de la Máquina Expendedora: ")
     print(f"Estados: {automata.estados}")
     print(f"Estados Finales: {automata.estados_finales}")
